@@ -24,7 +24,7 @@ setup(
 
     description="Streamlit App to help you cross analyze your Whoop sleep and recovery data with your Levels glucose "
                 "data",
-    long_description=read("README.rst"),
+    long_description=read("README.md"),
 
     packages=find_packages(exclude=('tests',)),
 

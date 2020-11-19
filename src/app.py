@@ -15,7 +15,7 @@ default_tz_index = all_timezones.index('America/Chicago')
 
 
 if example_analysis_sb:
-    sample_dataset = pd.read_csv('sample.csv', parse_dates=['Date'], index_col=0)
+    sample_dataset = pd.read_csv('src/sample.csv', parse_dates=['Date'], index_col=0)
     x_selection_sample, y_selection_sample, color_selection_sample = util.variables_for_plot(sample_dataset,
                                                                                              app_section='example')
     if x_selection_sample != '<select>' and y_selection_sample != '<select>':

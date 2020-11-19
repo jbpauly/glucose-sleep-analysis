@@ -2,10 +2,11 @@
 
 Sleep, or lack of, can highly impact your metabolic health.
 If you track your sleep with Whoop and glucose with Levels, 
-this [app](https://share.streamlit.io/jbpauly/glucose-sleep-analysis/main/src/main.py) enables you to cross analyze your sleep metrics glucose data.
+this [app](https://share.streamlit.io/jbpauly/glucose-sleep-analysis/main/src/app.py) 
+enables you to cross analyze your sleep metrics glucose data.
 
 ## Try it out!
-1. [Launch the app](https://share.streamlit.io/jbpauly/glucose-sleep-analysis/main/src/main.py)
+1. [Launch the app](https://share.streamlit.io/jbpauly/glucose-sleep-analysis/main/src/app.py)
 2. Download your [Freestyle Libre glucose data](https://www.libreview.com/)
 3. Download your [Whoop sleep summary data](https://docs.google.com/spreadsheets/d/1q9tU4tkBLUi6oFsdLsO9HnOuMC-TEkrBXNoNXvLQt3Q/edit#gid=1913656685)
     - Follow the [How To video](https://www.youtube.com/watch?v=x19G39cXkoM)

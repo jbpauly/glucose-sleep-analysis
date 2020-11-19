@@ -19,6 +19,7 @@ lib
 lib64
 __pycache__
 .idea/
+venv/
 src/sandbox/
 explore.ipynb
 src/.ipynb_checkpoints/

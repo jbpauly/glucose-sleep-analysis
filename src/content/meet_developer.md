@@ -15,4 +15,4 @@ is where I envision myself in the near future.
 - View my [resume](https://docs.google.com/document/d/1_a9wrZdrGWLrfasOR_PXB7je2db_77WRkrp0p4LvyC8/edit?usp=sharing)
 - Checkout the project on [Github](https://github.com/jbpauly/glucose-sleep-analysis)
 - Find me on [Twitter](https://twitter.com/j_b_pauly)
-- [Email me](mailto:joseph.b.pauly@gmail.com) if you want to chat!
+- [Email me](mailto:joseph.b.pauly@gmail.com) to chat!

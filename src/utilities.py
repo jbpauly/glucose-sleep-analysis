@@ -30,6 +30,9 @@ def load_sleep_data(sleep_file) -> pd.DataFrame:
 
     Returns: pandas DataFrame of sleep data
     """
+
+    # TODO: split into 'read' and 'load' functions
+
     expected_cols = ['Date',
                      'Strain',
                      'Recovery',
@@ -71,6 +74,9 @@ def load_glucose_data(glucose_file, timezone: str) -> pd.DataFrame:
 
     Returns: pandas DataFrame of glucose data
     """
+
+    # TODO: split into 'read' and 'load' functions
+
     expected_cols = ['Device Timestamp',
                      'Record Type',
                      'Historic Glucose mg/dL']

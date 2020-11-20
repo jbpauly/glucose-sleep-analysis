@@ -54,10 +54,11 @@ packaging==20.4           # via bleach, pytest, streamlit
 pandas==1.1.4             # via -r requirements.in, altair, streamlit
 pandocfilters==1.4.3      # via nbconvert
 parso==0.7.1              # via jedi
+pathlib==1.0.1            # via -r requirements.in
 pathtools==0.1.2          # via watchdog
 pexpect==4.8.0            # via ipython
 pickleshare==0.7.5        # via ipython
-pillow==8.0.1             # via streamlit
+pillow==8.0.1             # via -r requirements.in, streamlit
 pluggy==0.13.1            # via pytest
 prometheus-client==0.9.0  # via notebook
 prompt-toolkit==3.0.8     # via ipython

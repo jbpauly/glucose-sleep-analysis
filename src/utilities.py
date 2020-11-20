@@ -2,9 +2,25 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 import altair as alt
+import pathlib
+from os.path import abspath, dirname
+
+SRC_PATH = pathlib.Path(dirname(abspath(__file__)))
 
 
-@st.cache
+@st.cache(suppress_st_warning=True)
+def read_markdown_file(file:str) -> str:
+    """
+    Read a markdown file and return as text.
+    Args:
+        file: name of file, which should be located in src/content/
+
+    Returns:
+    File text as a a string.
+    """
+    return (SRC_PATH / 'content' / file).read_text()
+
+
 def load_sleep_data(sleep_file) -> pd.DataFrame:
     """
     Load a Whoop sleep summary CSV file and return a pandas DataFrame version of the file
@@ -44,7 +60,6 @@ def load_sleep_data(sleep_file) -> pd.DataFrame:
     return raw_sleep
 
 
-@st.cache
 def load_glucose_data(glucose_file, timezone: str) -> pd.DataFrame:
     """
     Load a FreeStyle LibreLink CSV file and return a pandas DataFrame version of the file
@@ -297,13 +312,19 @@ def variables_for_plot(dataset: pd.DataFrame, app_section: str = 'user') -> (str
     all_cols.insert(0, '<select>')
     all_cols_no_date = all_cols.copy()
     all_cols_no_date.remove('Date')
+    x_default = all_cols.index('Sleep Score')
+    y_default = all_cols.index('Glucose Volatility (Previous Day)')
+    c_default = all_cols_no_date.index('Recovery')
 
     x_key = app_section + '_x'
     y_key = app_section + '_y'
     c_key = app_section + '_c'
     x_axis_col, y_axis_col, color_col = st.beta_columns(3)
-    x = x_axis_col.selectbox('X-Axis', all_cols, key=x_key)
-    y = y_axis_col.selectbox('Y-Axis', all_cols, key=y_key)
-    color = color_col.selectbox('OPTIONAL: Color Gradient', all_cols_no_date, key=c_key)
+    x = x_axis_col.selectbox(label='X-Axis', options=all_cols, index=x_default, key=x_key)
+    y = y_axis_col.selectbox(label='Y-Axis', options=all_cols, index=y_default, key=y_key)
+    color = color_col.selectbox(label='OPTIONAL: Color Gradient',
+                                options=all_cols_no_date,
+                                index=c_default,
+                                key=c_key)
 
     return x, y, color

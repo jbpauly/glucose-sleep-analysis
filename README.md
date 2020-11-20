@@ -2,7 +2,7 @@
 
 Sleep, or lack of, can highly impact your metabolic health.
 If you track your sleep with Whoop and glucose with Levels, 
-this [app](https://share.streamlit.io/jbpauly/glucose-sleep-analysis/main/src/app.py) 
+this [app](https://share.streamlit.io/jbpauly/glucose-sleep-analysis/main/src/app.py)
 enables you to cross analyze your sleep metrics glucose data.
 
 ## Try it out!
@@ -29,10 +29,12 @@ streamlit run main.py
 
 ## Roadmap
 1. Close out code coverage with tests.
-2. Integrate with [whoop-api-spec](https://github.com/pelo-tech/whoop-api-spec) 
+2. Add data dictionary and clean up parameter names.
+3. Calculate previous day strain metrics.
+4. Investigate how the FreeStyle Libre device historizes data (on change vs interval) and adjust aggregations if needed.
+6. Integrate with [whoop-api-spec](https://github.com/pelo-tech/whoop-api-spec) 
 so users can request Whoop sleep data directly from app instead using the [google-sheet GUI](https://docs.google.com/spreadsheets/d/1q9tU4tkBLUi6oFsdLsO9HnOuMC-TEkrBXNoNXvLQt3Q/edit#gid=1913656685)
-3. Add option to download analysis dataset.
-4. Add data dictionary and clean up parameter names.
+7. Add option to download analysis dataset.
 
 ## Questions, comments, or suggestions?
 This app new and will likely break at some point. 

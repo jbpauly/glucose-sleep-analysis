@@ -32,6 +32,7 @@ streamlit run main.py
 2. Add data dictionary and clean up parameter names.
 3. Calculate previous day strain metrics.
 4. Investigate how the FreeStyle Libre device historizes data (on change vs interval) and adjust aggregations if needed.
+5. Add best-fit-line & clustering features
 6. Integrate with [whoop-api-spec](https://github.com/pelo-tech/whoop-api-spec) 
 so users can request Whoop sleep data directly from app instead using the [google-sheet GUI](https://docs.google.com/spreadsheets/d/1q9tU4tkBLUi6oFsdLsO9HnOuMC-TEkrBXNoNXvLQt3Q/edit#gid=1913656685)
 7. Add option to download analysis dataset.

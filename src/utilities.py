@@ -110,6 +110,7 @@ def load_glucose_data(glucose_file, timezone: str) -> pd.DataFrame:
 # Then groupBy(label) and aggregate.
 # For now, keep the single series and dict iterating method for flexibility.
 # In the future, pass in statistics to be calculated (out of box or custom).
+@st.cache(suppress_st_warning=True)
 def glucose_stats(glucose: pd.Series, time_label: str = None) -> pd.Series:
     """
     Aggregate statistics over a series of glucose data and return the statistics as a series.
@@ -271,6 +272,7 @@ def create_analysis_dataset(sleep: pd.DataFrame, glucose: pd.Series) -> pd.DataF
     return all_data
 
 
+@st.cache(suppress_st_warning=True)
 def create_scatter(dataset: pd.DataFrame, x_selection: str, y_selection: str, color_selection: str) -> alt.Chart:
     """
     Create an interactive altair scatter plot with user defined x and y parameters as well as an optional third
@@ -304,6 +306,7 @@ def create_scatter(dataset: pd.DataFrame, x_selection: str, y_selection: str, co
     return plot
 
 
+@st.cache(suppress_st_warning=True)
 def variables_for_plot(dataset: pd.DataFrame, app_section: str = 'user') -> (str, str, str):
     """
     Get user selected parameters for plot x-axis, y-axis, and optionally, the marker color gradient.

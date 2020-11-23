@@ -22,6 +22,19 @@ def read_markdown_file(file:str) -> str:
 
 
 @st.cache(suppress_st_warning=True)
+def read_markdown_file(file:str) -> str:
+    """
+    Read a markdown file and return as text.
+    Args:
+        file: name of file, which should be located in src/content/
+
+    Returns:
+    File text as a a string.
+    """
+    return (SRC_PATH / 'content' / file).read_text()
+
+
+@st.cache(suppress_st_warning=True)
 def load_sleep_data(sleep_file) -> pd.DataFrame:
     """
     Load a Whoop sleep summary CSV file and return a pandas DataFrame version of the file

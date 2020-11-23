@@ -16,3 +16,4 @@ is where I envision myself in the near future.
 - Checkout the project on [Github](https://github.com/jbpauly/glucose-sleep-analysis)
 - Find me on [Twitter](https://twitter.com/j_b_pauly)
 - [Email me](mailto:joseph.b.pauly@gmail.com) to chat!
+

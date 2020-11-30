@@ -5,7 +5,7 @@ If you track your sleep with Whoop and glucose with Levels,
 this [app](https://share.streamlit.io/jbpauly/glucose-sleep-analysis/main/src/app.py)
 enables you to cross analyze your sleep metrics glucose data.
 
-![](content/analysis.gif)
+![](src/content/analysis.gif)
 
 ## Try it out!
 1. [Launch the app](https://share.streamlit.io/jbpauly/glucose-sleep-analysis/main/src/app.py)

@@ -110,6 +110,7 @@ def load_glucose_data(glucose_file, timezone: str) -> pd.DataFrame:
 # Then groupBy(label) and aggregate.
 # For now, keep the single series and dict iterating method for flexibility.
 # In the future, pass in statistics to be calculated (out of box or custom).
+@st.cache(suppress_st_warning=True)
 def glucose_stats(glucose: pd.Series, time_label: str = None) -> pd.Series:
     """
     Aggregate statistics over a series of glucose data and return the statistics as a series.

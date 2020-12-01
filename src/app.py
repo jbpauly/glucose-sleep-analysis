@@ -7,6 +7,11 @@ from PIL import Image
 
 default_tz_index = all_timezones.index('America/Chicago')
 sample_file_path = util.SRC_PATH / 'sample.csv'
+
+st.set_page_config(page_title='Glucose | Sleep',
+                   page_icon='🔎',
+                   layout='centered',
+                   initial_sidebar_state='expanded')
 st.sidebar.subheader("Application Pages:")
 st.markdown("""
 # Metabolic Health and Sleep Analyzer

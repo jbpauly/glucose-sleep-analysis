@@ -8,7 +8,7 @@ my experience is in time series analysis & industrial equipment/system optimizat
 and I have an appetite for learning and building new things.
 
 I'm currently exploring opportunities for my next role, 
-and looking to help solve tough but impactful problems (like metabolic health)!
+and looking to help solve tough but impactful problems!
 
 - View my [resume](https://docs.google.com/document/d/1_a9wrZdrGWLrfasOR_PXB7je2db_77WRkrp0p4LvyC8/edit?usp=sharing)
 - Checkout this project and other work on [Github](https://github.com/jbpauly/glucose-sleep-analysis)

@@ -21,7 +21,7 @@ __pycache__
 .idea/
 venv/
 src/sandbox/
-explore.ipynb
+report.ipynb
 src/.ipynb_checkpoints/
 
 # Installer logs

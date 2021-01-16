@@ -1,7 +1,7 @@
 Hey! Thanks for checking out my application. 
 I hope you find it useful or it nudges you to learn more about your metabolic health.
 [Levels](https://www.levelshealth.com/signup) is a fantastic program,
-and they're [just getting started](https://www.levelshealth.com/blog/levels-raises-12m-investment-round-improve-metabolic-health-wearables).
+and they're [just getting started](https://www.levelshealth.com/blog/the-secret-levels-master-plan-just-between-you-and-me-cgm-glucose).
 
 As a data scientist, 
 my experience is in time series analysis & industrial equipment/system optimization,

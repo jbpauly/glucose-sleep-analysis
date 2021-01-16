@@ -1,9 +1,14 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import utilities as util
+import plot
 from pytz import all_timezones
 import pandas as pd
 from PIL import Image
+import time
+from streamlit_pandas_profiling import st_profile_report
+from streamlit_vega_lite import vega_lite_component, altair_component
+
 
 default_tz_index = all_timezones.index('America/Chicago')
 sample_file_path = util.SRC_PATH / 'sample.csv'
@@ -42,13 +47,30 @@ if welcome_sb:
 
 
 if example_analysis_sb:
-    sample_dataset = pd.read_csv(sample_file_path, parse_dates=['Date'], index_col=0)
+    sample_dataset = pd.read_csv(sample_file_path, parse_dates=['Date'], index_col=0).round(2)
+    corr_matrix = util.corr_matrix(sample_dataset, 'Date').round(2)
+    corr_heatmap = plot.plotly_heatmap(corr_matrix)
+    st.plotly_chart(corr_heatmap, use_container_width=True)
     x_selection_sample, y_selection_sample, color_selection_sample = util.variables_for_plot(sample_dataset,
                                                                                              app_section='example')
     if x_selection_sample != '<select>' and y_selection_sample != '<select>':
-        sample_plot = util.create_scatter(sample_dataset, x_selection_sample, y_selection_sample,
-                                          color_selection_sample)
-        st.altair_chart(sample_plot, use_container_width=True)
+        scatter = plot.plotly_scatter(sample_dataset, x_selection_sample, y_selection_sample, color_selection_sample)
+        line = plot.plotly_line(sample_dataset, x_selection_sample, y_selection_sample, 'Date')
+        st.plotly_chart(scatter, use_container_width=True)
+        st.plotly_chart(line, use_container_width=True)
+        # sample_scatter = util.create_scatter(sample_dataset,
+        #                                      x_selection_sample,
+        #                                      y_selection_sample,
+        #                                      color_selection_sample)
+        # corr_matrix = util.create_correlation_matrix(sample_dataset, date_column='Date')
+        # sample_corr = util.create_matrix_heatmap(corr_matrix,
+        #                                          x_selection_sample,
+        #                                          y_selection_sample)
+        # st.altair_chart(sample_corr, use_container_width=True)
+        # st.altair_chart(sample_scatter, use_container_width=True)
+
+    # pr = util.profile_report(sample_dataset)
+    # st_profile_report(pr)
 
 sleep_df = None
 glucose_df = None

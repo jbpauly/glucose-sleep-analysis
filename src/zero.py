@@ -29,6 +29,7 @@ def load_zero_data(fast_file) -> pd.DataFrame:
     return fasts
 
 
+@st.cache(suppress_st_warning=True)
 def fasts_start_end(fasts: pd.DataFrame) -> pd.DataFrame:
     """
     Calculate the start and end datetimes of each logged fast from a file exported from Zero Fasting.
@@ -50,6 +51,7 @@ def fasts_start_end(fasts: pd.DataFrame) -> pd.DataFrame:
     return start_end
 
 
+@st.cache(suppress_st_warning=True)
 def date_durations(start_end: pd.DataFrame) -> pd.DataFrame:
     """
     Calculate the durations of each fast, broken down by day (start and end days).
@@ -88,6 +90,7 @@ def fasts_details(fasts: pd.DataFrame) -> pd.DataFrame:
     return details
 
 
+@st.cache(suppress_st_warning=True)
 def fast_cumulative_consecutive(details: pd.DataFrame) -> pd.DataFrame:
     """
     Calculate cumulative and consecutive hours of fasts for each day in a fast_details dataset.
@@ -118,6 +121,7 @@ def fast_cumulative_consecutive(details: pd.DataFrame) -> pd.DataFrame:
     return stats
 
 
+@st.cache(suppress_st_warning=True)
 def fasts_binned(cumulative_consecutive: pd.DataFrame) -> pd.DataFrame:
     """
     Bin consecutive and cumulative fasting hours stats from 0-12, 13-15, 16-18, 18+ hours, 
@@ -144,6 +148,7 @@ def fasts_binned(cumulative_consecutive: pd.DataFrame) -> pd.DataFrame:
     return binned_fasts
 
 
+@st.cache(suppress_st_warning=True)
 def all_fasts_stats(fasts: pd.DataFrame) -> pd.DataFrame:
     """
     Calculate the daily cumulative and consecutive fasts durations and bin the fasts.

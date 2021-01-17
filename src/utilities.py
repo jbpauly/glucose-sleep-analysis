@@ -9,7 +9,7 @@ import glucose as gc
 SRC_PATH = pathlib.Path(dirname(abspath(__file__)))
 
 
-# @st.cache(suppress_st_warning=True)
+@st.cache(suppress_st_warning=True)
 def read_markdown_file(file: str) -> str:
     """
     Read a markdown file and return as text.
@@ -22,7 +22,7 @@ def read_markdown_file(file: str) -> str:
     return (SRC_PATH / 'content' / file).read_text()
 
 
-# @st.cache(suppress_st_warning=True)
+@st.cache(suppress_st_warning=True)
 def create_metrics_dataset(fitness_scores: pd.DataFrame,
                            metabolic_scores: pd.DataFrame,
                            fasting_scores: pd.DataFrame) -> pd.DataFrame:
@@ -42,7 +42,7 @@ def create_metrics_dataset(fitness_scores: pd.DataFrame,
     return metrics
 
 
-# @st.cache(suppress_st_warning=True)
+@st.cache(suppress_st_warning=True)
 def create_raw_analysis_dataset(sleep: pd.DataFrame, glucose: pd.Series) -> pd.DataFrame:
     """
     Create the full dataset for use in scatter plot analysis.
@@ -74,7 +74,7 @@ def create_raw_analysis_dataset(sleep: pd.DataFrame, glucose: pd.Series) -> pd.D
     return all_data
 
 
-# @st.cache(suppress_st_warning=True)
+@st.cache(suppress_st_warning=True)
 def corr_matrix_long(parameters: pd.DataFrame, date_column: str = None) -> pd.DataFrame:
     """
     Create a long format correlation 'matrix'. Columns include 'x', 'y', and 'correlation'.
@@ -92,7 +92,7 @@ def corr_matrix_long(parameters: pd.DataFrame, date_column: str = None) -> pd.Da
     return correlations
 
 
-# @st.cache(suppress_st_warning=True)
+@st.cache(suppress_st_warning=True)
 def corr_matrix(parameters: pd.DataFrame, date_column: str = None) -> pd.DataFrame:
     """
     Create a square format correlation 'matrix'. Indexes and columns will match.
@@ -109,7 +109,7 @@ def corr_matrix(parameters: pd.DataFrame, date_column: str = None) -> pd.DataFra
     return matrix
 
 
-# @st.cache(suppress_st_warning=True)
+@st.cache(suppress_st_warning=True)
 def create_dates(dates: [str]) -> [dt.date]:
     """
     Create a list of dates as datetime.date objects.
@@ -123,7 +123,7 @@ def create_dates(dates: [str]) -> [dt.date]:
     return dates_list
 
 
-# @st.cache(suppress_st_warning=True)
+@st.cache(suppress_st_warning=True)
 def profile_report(summary_data: pd.DataFrame) -> ProfileReport:
     """
     Create a pandas_profiling profile report to embed in the Streamlit app or Jupyter Notebook

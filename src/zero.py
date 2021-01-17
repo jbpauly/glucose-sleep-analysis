@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 
 
+@st.cache(suppress_st_warning=True)
 def load_zero_data(fast_file) -> pd.DataFrame:
     """
     Load a Zero Fasting data export CSV file and return a pandas DataFrame version of the file.
@@ -72,7 +73,7 @@ def date_durations(start_end: pd.DataFrame) -> pd.DataFrame:
     return durations
 
 
-def fast_details(fasts: pd.DataFrame) -> pd.DataFrame:
+def fasts_details(fasts: pd.DataFrame) -> pd.DataFrame:
     """
     Combine outputs from zero.fasts_start_end() and zero.date_durations() for a detailed dataset on the fasts.
     Args:
@@ -87,7 +88,7 @@ def fast_details(fasts: pd.DataFrame) -> pd.DataFrame:
     return details
 
 
-def fast_day_stats(details: pd.DataFrame) -> pd.DataFrame:
+def fast_cumulative_consecutive(details: pd.DataFrame) -> pd.DataFrame:
     """
     Calculate cumulative and consecutive hours of fasts for each day in a fast_details dataset.
     Args:
@@ -102,7 +103,7 @@ def fast_day_stats(details: pd.DataFrame) -> pd.DataFrame:
     """
     first_date = details.start_dt[0].date()
     last_date = details.end_dt.iat[-1].date()
-    all_fast_dates = pd.date_range(start=first_date, end=last_date, freq='1D').date # create dates not datetime
+    all_fast_dates = pd.date_range(start=first_date, end=last_date, freq='1D').date  # create dates not datetime
     stats = pd.DataFrame({'Fast (cumulative hours)': 0, 'Fast (consecutive hours)': 0}, index=all_fast_dates,
                          dtype=float)
     for index, fast in details.iterrows():
@@ -115,3 +116,45 @@ def fast_day_stats(details: pd.DataFrame) -> pd.DataFrame:
         stats.at[end_date, 'Fast (consecutive hours)'] = max(fast['total_hours'],
                                                              stats.at[end_date, 'Fast (consecutive hours)'])
     return stats
+
+
+def fasts_binned(cumulative_consecutive: pd.DataFrame) -> pd.DataFrame:
+    """
+    Bin consecutive and cumulative fasting hours stats from 0-12, 13-15, 16-18, 18+ hours, 
+    as well as a fasting benchmark (fasts? yes/no) cumulative hours by binning from 0-12, and 13+ hours.
+    Args:
+        cumulative_consecutive: Output from zero.fast_day_stats().
+
+    Returns: Binnings as a pandas DataFrame with columns: Fast (consecutive hours), Fast (cumulative hours), fasts.
+
+    """
+    consecutive_binned = pd.cut(x=cumulative_consecutive['Fast (consecutive hours)'],
+                                bins=[-1, 12, 15, 18, 24],
+                                labels=['0-12 hrs', '13-15 hrs', '16-18 hrs', '18+ hrs']).\
+        rename('Fast Binned (consecutive hrs)')
+    cumulative_binned = pd.cut(x=cumulative_consecutive['Fast (cumulative hours)'],
+                               bins=[-1, 12, 15, 18, 24],
+                               labels=['0-12 hrs', '13-15 hrs', '16-18 hrs', '18+ hrs']).\
+        rename('Fast Binned (cumulative hrs)')
+    fast = pd.cut(x=cumulative_consecutive['Fast (cumulative hours)'],
+                  bins=[-1, 12, 24],
+                  labels=['No', 'Yes']).rename('Fast')
+
+    binned_fasts = pd.concat([consecutive_binned, cumulative_binned, fast], axis=1)
+    return binned_fasts
+
+
+def all_fasts_stats(fasts: pd.DataFrame) -> pd.DataFrame:
+    """
+    Calculate the daily cumulative and consecutive fasts durations and bin the fasts.
+    Args:
+        fasts: The Zero Fasting file export as a pandas DataFrame.
+
+    Returns: The calculations and binned data indexed on date.
+
+    """
+    details = fasts_details(fasts)
+    cumulative_consecutive = fast_cumulative_consecutive(details)
+    binned = fasts_binned(cumulative_consecutive)
+    all_stats = pd.concat([cumulative_consecutive, binned], axis=1)
+    return all_stats

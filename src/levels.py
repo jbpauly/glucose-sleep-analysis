@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 
 
+@st.cache(suppress_st_warning=True)
 def load_levels_data(levels_file) -> pd.DataFrame:
     """
     Load a CSV file of Levels daily scores as a DataFrame.

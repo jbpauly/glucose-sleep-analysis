@@ -2,15 +2,13 @@ import streamlit as st
 import streamlit.components.v1 as components
 import utilities as util
 import plot
-from pytz import all_timezones
 import pandas as pd
 from PIL import Image
-import time
-from streamlit_pandas_profiling import st_profile_report
-from streamlit_vega_lite import vega_lite_component, altair_component
+import levels as lv
+import whoop as wp
+import zero as zo
 
 
-default_tz_index = all_timezones.index('America/Chicago')
 sample_file_path = util.SRC_PATH / 'sample.csv'
 st.sidebar.subheader("Application Pages:")
 st.markdown("""
@@ -72,35 +70,29 @@ if example_analysis_sb:
     # pr = util.profile_report(sample_dataset)
     # st_profile_report(pr)
 
-sleep_df = None
-glucose_df = None
+fitness_scores = None
+metabolic_scores = None
+fasting_scores = None
 if analyze_data_sb:
     with st.beta_expander("Upload Data", expanded=False):
-        tz_select_col, tz_verify_col = st.beta_columns((2, 1))
-        time_zone = tz_select_col.selectbox("Select your timezone associated with your glucose data",
-                                            options=all_timezones,
-                                            index=default_tz_index
-                                            )
-        tz_verify_col.text("")
-        tz_verify_col.text("")
-        verified_tz = tz_verify_col.checkbox('Verify selected timezone', value=False)
-        sleep_col, glucose_col = st.beta_columns(2)
-        sleep_file = sleep_col.file_uploader("Upload Sleep Data", type=['csv'])
-        glucose_file = glucose_col.file_uploader("Upload Glucose Data", type=['csv'])
-
-        if sleep_file is not None and glucose_file is not None:
-            sleep_df = util.load_sleep_data(sleep_file)
-            if not verified_tz:
-                st.error('Please verify the selected timezone for your glucose data for accurate pairing with your '
-                         'sleep data.')
-            else:
-                glucose_df = util.load_glucose_data(glucose_file, time_zone)
+        whoop_col, levels_col, zero_col = st.beta_columns(3)
+        whoop_file = whoop_col.file_uploader("Upload Whoop Data", type=['csv'])
+        levels_file = levels_col.file_uploader("Upload Levels Data", type=['csv'])
+        zero_file = zero_col.file_uploader("Upload Zero Fasting Data", type=['csv'])
+        st.write(type(whoop_file))
+        if whoop_file is not None and levels_file is not None and zero_file is not None:
+            fitness_scores = wp.load_whoop_data(whoop_file)
+            metabolic_scores = lv.load_levels_data(levels_file)
+            fasting = zo.load_zero_data(zero_file)
+            fasting_scores = zo.all_fasts_stats(fasting)
 
     with st.beta_expander("Analyze Data", expanded=False):
-        if sleep_df is not None and glucose_df is not None:
-            all_data = util.create_analysis_dataset(sleep=sleep_df, glucose=glucose_df)
+        if fitness_scores is not None and metabolic_scores is not None and fasting_scores is not None:
+            all_metrics = util.create_metrics_dataset(fitness_scores=fitness_scores,
+                                                      metabolic_scores=metabolic_scores,
+                                                      fasting_scores=fasting_scores,)
 
-            x_selection, y_selection, color_selection = util.variables_for_plot(all_data, )
+            x_selection, y_selection, color_selection = util.variables_for_plot(all_metrics, )
             if x_selection != '<select>' and y_selection != '<select>':
-                plot = util.create_scatter(all_data, x_selection, y_selection, color_selection)
+                plot = util.create_scatter(all_metrics, x_selection, y_selection, color_selection)
                 st.altair_chart(plot, use_container_width=True)

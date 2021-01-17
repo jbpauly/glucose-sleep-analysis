@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 
 
-# @st.cache(suppress_st_warning=True)
+@st.cache(suppress_st_warning=True)
 def load_whoop_data(sleep_file) -> pd.DataFrame:
     """
     Load a Whoop daily summary CSV file and return a pandas DataFrame version of the file.
@@ -36,7 +36,7 @@ def load_whoop_data(sleep_file) -> pd.DataFrame:
                                 )
     except ValueError:
         st.error(f"""
-        Incorrect format of sleep data CSV. Please make sure you uploaded the correct file.
+        Incorrect format of Whoop data CSV. Please make sure you uploaded the correct file.
         \nThe following columns must be present in the first row:
         \n {expected_cols}
         """)

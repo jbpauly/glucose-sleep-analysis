@@ -23,7 +23,27 @@ def read_markdown_file(file: str) -> str:
 
 
 # @st.cache(suppress_st_warning=True)
-def create_analysis_dataset(sleep: pd.DataFrame, glucose: pd.Series) -> pd.DataFrame:
+def create_metrics_dataset(fitness_scores: pd.DataFrame,
+                           metabolic_scores: pd.DataFrame,
+                           fasting_scores: pd.DataFrame) -> pd.DataFrame:
+    """
+    Inner join the fitness, metabolic, and fasting scores on date and create a date column.
+    Args:
+        fitness_scores: Daily fitness scores from Whoop.
+        metabolic_scores: Daily metabolic scores from Levels.
+        fasting_scores: Daily fasting scores from Zero Fasting.
+
+    Returns: A pandas DataFrame of the joined metrics.
+
+    """
+    metrics = pd.concat([fitness_scores, metabolic_scores, fasting_scores], axis=1, sort=True, join='inner')\
+        .round(2).reset_index()
+    metrics.rename(columns={'index': 'Date'}, inplace=True)
+    return metrics
+
+
+# @st.cache(suppress_st_warning=True)
+def create_raw_analysis_dataset(sleep: pd.DataFrame, glucose: pd.Series) -> pd.DataFrame:
     """
     Create the full dataset for use in scatter plot analysis.
     First create subsets of glucose statistics by various grouping created:
@@ -44,10 +64,8 @@ def create_analysis_dataset(sleep: pd.DataFrame, glucose: pd.Series) -> pd.DataF
     """
     sleep_groups = gc.create_glucose_sleep_groups(glucose=glucose, sleep=sleep)
     day_groups = gc.create_glucose_day_groups(glucose=glucose)
-    # previous_day_groups = create_glucose_previous_day_groups(day_groups=day_groups)
     glucose_sleep_stats = gc.grouped_glucose_stats(groups=sleep_groups, time_label='Sleep')
     glucose_day_stats = gc.grouped_glucose_stats(groups=day_groups, time_label='Day')
-    # glucose_previous_day_stats = grouped_glucose_stats(groups=previous_day_groups, time_label='Previous Day')
     all_glucose_data = pd.concat([glucose_sleep_stats, glucose_day_stats], axis=1)
     sleep_numeric = sleep.copy().drop(columns=['Sleep Start', 'Sleep End'])
     all_data = all_glucose_data.merge(sleep_numeric, left_index=True, right_index=True).round(2).reset_index()

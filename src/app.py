@@ -10,6 +10,11 @@ import zero as zo
 
 
 sample_file_path = util.SRC_PATH / 'sample.csv'
+
+st.set_page_config(page_title='Glucose | Sleep',
+                   page_icon='🔎',
+                   layout='centered',
+                   initial_sidebar_state='expanded')
 st.sidebar.subheader("Application Pages:")
 st.markdown("""
 # Metabolic Health and Sleep Analyzer
@@ -27,9 +32,9 @@ st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
 with st.sidebar.beta_expander("Meet the Developer"):
-    me = Image.open(util.SRC_PATH /'content/me.jpeg')
+    me = Image.open(util.SRC_PATH / 'content/me.jpeg')
     st.image(me, use_column_width=True,
-    )
+             )
     meet_developer_file = util.read_markdown_file("meet_developer.md")
     st.markdown(meet_developer_file, unsafe_allow_html=True)
 
@@ -42,7 +47,6 @@ if welcome_sb:
         get_started_file = util.read_markdown_file("get_started.md")
         st.markdown(get_started_file, unsafe_allow_html=True)
         components.iframe("https://www.loom.com/embed/62467100449b4c45bca5b603cfd573ac", height=430)
-
 
 if example_analysis_sb:
     sample_dataset = pd.read_csv(sample_file_path, parse_dates=['Date'], index_col=0).round(2)
@@ -69,6 +73,7 @@ if example_analysis_sb:
 
     # pr = util.profile_report(sample_dataset)
     # st_profile_report(pr)
+
 
 fitness_scores = None
 metabolic_scores = None

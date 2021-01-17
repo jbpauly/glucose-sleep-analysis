@@ -70,10 +70,9 @@ if example_analysis_sb:
         #                                          y_selection_sample)
         # st.altair_chart(sample_corr, use_container_width=True)
         # st.altair_chart(sample_scatter, use_container_width=True)
-
+        
     # pr = util.profile_report(sample_dataset)
     # st_profile_report(pr)
-
 
 fitness_scores = None
 metabolic_scores = None
@@ -98,5 +97,8 @@ if analyze_data_sb:
 
             x_selection, y_selection, color_selection = util.variables_for_plot(all_metrics, )
             if x_selection != '<select>' and y_selection != '<select>':
-                plot = util.create_scatter(all_metrics, x_selection, y_selection, color_selection)
-                st.altair_chart(plot, use_container_width=True)
+                scatter = plot.plotly_scatter(all_metrics, x_selection, y_selection,
+                                              color_selection)
+                line = plot.plotly_line(x_selection, x_selection, y_selection, 'Date')
+                st.plotly_chart(scatter, use_container_width=True)
+                st.plotly_chart(line, use_container_width=True)

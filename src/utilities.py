@@ -154,7 +154,7 @@ def variables_for_plot(dataset: pd.DataFrame, app_section: str = 'user') -> (str
     all_cols_no_date = all_cols.copy()
     all_cols_no_date.remove('Date')
     x_default = all_cols.index('Sleep Score')
-    y_default = all_cols.index('Glucose Volatility (Previous Day)')
+    y_default = all_cols.index('Glucose STD (Previous Day)')
     c_default = all_cols_no_date.index('Recovery')
 
     x_key = app_section + '_x'

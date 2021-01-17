@@ -1,4 +1,4 @@
-,Date,Glucose Mean (Sleep),Glucose Volatility (Sleep),Glucose Minimum (Sleep),Glucose Maximum (Sleep),Glucose Mean (Day),Glucose Volatility (Day),Glucose Minimum (Day),Glucose Maximum (Day),Glucose Mean (Previous Day),Glucose Volatility (Previous Day),Glucose Minimum (Previous Day),Glucose Maximum (Previous Day),Strain,Recovery,Sleep Score,RHR,Average HR,Max HR,Respiratory Rate,HRV (ms),Sleep (hr)
+,Date,Glucose Mean (Sleep),Glucose STD (Sleep),Glucose Minimum (Sleep),Glucose Maximum (Sleep),Glucose Mean (Day), Glucose STD (Day),Glucose Minimum (Day),Glucose Maximum (Day),Glucose Mean (Previous Day),Glucose STD (Previous Day),Glucose Minimum (Previous Day),Glucose Maximum (Previous Day),Strain,Recovery,Sleep Score,RHR,Average HR,Max HR,Respiratory Rate,HRV (ms),Sleep (hr)
 0,2020-08-11,,,,,106.98,11.41,86.45,126.35,,,,,18.64,60.90,91.35,43.28,63.98,169.36,14.83,74.69,8.01
 1,2020-08-12,72.80,7.70,62.70,92.15,91.85,19.03,62.70,133.95,106.98,11.41,86.45,126.35,5.84,66.15,72.45,47.99,60.22,127.02,15.71,82.05,6.67
 2,2020-08-13,94.96,13.21,76.00,118.75,90.58,12.41,64.60,120.65,91.85,19.03,62.70,133.95,15.50,27.30,70.35,50.81,62.10,156.19,15.71,54.66,6.18

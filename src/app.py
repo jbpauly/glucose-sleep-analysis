@@ -79,7 +79,6 @@ if analyze_data_sb:
         whoop_file = whoop_col.file_uploader("Upload Whoop Data", type=['csv'])
         levels_file = levels_col.file_uploader("Upload Levels Data", type=['csv'])
         zero_file = zero_col.file_uploader("Upload Zero Fasting Data", type=['csv'])
-        st.write(type(whoop_file))
         if whoop_file is not None and levels_file is not None and zero_file is not None:
             fitness_scores = wp.load_whoop_data(whoop_file)
             metabolic_scores = lv.load_levels_data(levels_file)

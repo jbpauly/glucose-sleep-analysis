@@ -95,6 +95,6 @@ if analyze_data_sb:
             if x_selection != '<select>' and y_selection != '<select>':
                 scatter = plot.plotly_scatter(all_metrics, x_selection, y_selection,
                                               color_selection)
-                line = plot.plotly_line(x_selection, x_selection, y_selection, 'Date')
+                line = plot.plotly_line(all_metrics, x_selection, y_selection, 'Date')
                 st.plotly_chart(scatter, use_container_width=True)
                 st.plotly_chart(line, use_container_width=True)

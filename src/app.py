@@ -56,10 +56,13 @@ if welcome_sb:
 if data_sb:
     st.write("")
     st.markdown("## Data")
-    with st.beta_expander("Data Overview", expanded=True):
-        data_overview_file = util.read_markdown_file("data/data_overview.md")
-        st.markdown(data_overview_file, unsafe_allow_html=True)
-        st.write(sample[0:4])
+    st.write("")
+    data_overview_file = util.read_markdown_file("data/data_overview.md")
+    st.markdown(data_overview_file, unsafe_allow_html=True)
+    st.write(sample[0:4])
+    st.markdown("""
+    Below is additional information on the logs and metrics: data sources, insights into the calculations, etc.
+    """)
     with st.beta_expander("Metabolic Score", expanded=False):
         ms_file = util.read_markdown_file("data/metabolic_score.md")
         st.markdown(ms_file, unsafe_allow_html=True)
@@ -91,12 +94,8 @@ if example_analysis_sb:
     st.write("")
     st.markdown("## Analysis")
     st.write("")
-
-    sample_dataset = sample
-    sample_corr = util.corr_matrix(sample_dataset, 'Date').round(2)
-    sample_heatmap = plot.plotly_heatmap(sample_corr)
-    st.plotly_chart(sample_heatmap, use_container_width=True)
-
+    analysis_file = util.read_markdown_file("analysis.md")
+    st.markdown(analysis_file, unsafe_allow_html=True)
     with st.beta_expander("View Information on Pearson's Correlation Coefficient"):
         sample_pc = util.read_markdown_file("pearson_corr.md")
         st.markdown(sample_pc, unsafe_allow_html=True)
@@ -104,8 +103,17 @@ if example_analysis_sb:
         sample_ols = util.read_markdown_file("ols.md")
         st.markdown(sample_ols, unsafe_allow_html=True)
 
+    st.write("")
+    st.markdown("### Sample Dataset Analysis")
+    st.write("")
     with st.beta_expander("View Data Dictionary"):
         st.table(data_dictionary)
+    sample_dataset = sample
+    sample_corr = util.corr_matrix(sample_dataset, 'Date').round(2)
+    sample_heatmap = plot.plotly_heatmap(sample_corr)
+    st.plotly_chart(sample_heatmap, use_container_width=True)
+
+
 
     x_selection_sample, y_selection_sample, color_selection_sample = util.variables_for_plot(sample_dataset,
                                                                                              date_col='Date',
@@ -125,12 +133,13 @@ if example_analysis_sb:
     #     sample_pr = util.profile_report(sample_dataset)
     #     st_profile_report(sample_pr)
 
-fitness_scores = None
+sleep_scores = None
 metabolic_scores = None
 fasting_scores = None
 if analyze_data_sb:
     st.write("")
     st.markdown("## Analyze Your Data")
+    st.write("")
     with st.beta_expander("Gather Data", expanded=True):
         get_started_file = util.read_markdown_file("instructions/get_started.md")
         st.markdown(get_started_file, unsafe_allow_html=True)
@@ -210,7 +219,10 @@ if analyze_data_sb:
             #     st_profile_report(pr)
 
 if more_info_sb:
+    st.write("")
     st.markdown("## Additional Information")
+    st.write("")
+
     more_info_file = util.read_markdown_file("more_info/odds_ends.md")
     st.markdown(more_info_file, unsafe_allow_html=True)
     with st.beta_expander("Levels Health", expanded=False):

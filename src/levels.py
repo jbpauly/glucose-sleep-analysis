@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 
 
-@st.cache(suppress_st_warning=True)
+# @st.cache(suppress_st_warning=True)
 def load_levels_data(levels_file) -> pd.DataFrame:
     """
     Load a CSV file of Levels daily scores as a DataFrame.
@@ -11,7 +11,7 @@ def load_levels_data(levels_file) -> pd.DataFrame:
 
     Returns: pandas DataFrame of Levels daily scores.
     """
-    expected_cols = ['Date', 'Levels Score (day)']
+    expected_cols = ['Date', 'Metabolic Score']
 
     try:
         levels = pd.read_csv(levels_file,

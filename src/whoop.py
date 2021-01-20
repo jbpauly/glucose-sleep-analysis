@@ -47,3 +47,16 @@ def load_whoop_data(sleep_file) -> pd.DataFrame:
     return raw_sleep
 
 
+@st.cache(suppress_st_warning=True)
+def sleep_metrics(whoop_summary: pd.DataFrame) -> pd.DataFrame:
+    """
+    Get the subset of Whoop summary data relevant to sleep: Strain, Recovery, Sleep Score, Sleep (hr).
+    Args:
+        whoop_summary: The Whoop summary DataFrame output from the whoop.load_whoop_data() function.
+
+    Returns: The pandas DataFrame subset.
+
+    """
+    sleep = whoop_summary[['Strain', 'Recovery', 'Sleep Score',	'Sleep (hr)']].copy().\
+        rename(columns={'Sleep (hr)': 'Sleep (hours)'})
+    return sleep

@@ -134,12 +134,12 @@ def fasts_binned(cumulative_consecutive: pd.DataFrame) -> pd.DataFrame:
     """
     consecutive_binned = pd.cut(x=cumulative_consecutive['Fast (consecutive hours)'],
                                 bins=[-1, 12, 15, 18, 24],
-                                labels=['0-12 hrs', '13-15 hrs', '16-18 hrs', '18+ hrs']).\
-        rename('Fast Binned (consecutive hrs)')
+                                labels=['0-12 hours', '13-15 hours', '16-18 hours', '18+ hours']).\
+        rename('Fast Binned (consecutive hours)')
     cumulative_binned = pd.cut(x=cumulative_consecutive['Fast (cumulative hours)'],
                                bins=[-1, 12, 15, 18, 24],
-                               labels=['0-12 hrs', '13-15 hrs', '16-18 hrs', '18+ hrs']).\
-        rename('Fast Binned (cumulative hrs)')
+                               labels=['0-12 hours', '13-15 hours', '16-18 hours', '18+ hours']).\
+        rename('Fast Binned (cumulative hours)')
     fast = pd.cut(x=cumulative_consecutive['Fast (cumulative hours)'],
                   bins=[-1, 12, 24],
                   labels=['No', 'Yes']).rename('Fast')

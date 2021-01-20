@@ -77,6 +77,7 @@ def plotly_heatmap(corr_matrix: pd.DataFrame) -> go.Figure:
     Returns: The Plotly graph object figure.
 
     """
+    title = "Metrics Summary: Pearson's Correlation"
     data = [go.Heatmap(x=corr_matrix.columns,
                        y=corr_matrix.index,
                        z=corr_matrix,
@@ -86,8 +87,18 @@ def plotly_heatmap(corr_matrix: pd.DataFrame) -> go.Figure:
                        xaxis=dict(showticklabels=True, tickfont=dict(size=8)),
                        yaxis=dict(showticklabels=True, tickfont=dict(size=8)), )
     fig = go.Figure(data=data, layout=layout)
-    fig.update_yaxes(automargin=True)
-    fig.update_xaxes(automargin=True)
+    fig.update_layout(
+        title=dict(
+            text=title,
+            x=0.5
+        ),
+        xaxis=dict(
+            automargin=True
+        ),
+        yaxis=dict(
+            automargin=True
+        )
+    )
     return fig
 
 
@@ -109,6 +120,7 @@ def plotly_scatter(dataset: pd.DataFrame,
     Returns: The Plotly graph object figure.
 
     """
+    title = f"Scatter Analysis: {x_selection} vs. {y_selection}"
     if color_selection == '<select>':
         color = None
     else:
@@ -119,6 +131,12 @@ def plotly_scatter(dataset: pd.DataFrame,
                      color=color,
                      trendline="ols",
                      hover_data = hover)
+    fig.update_layout(
+        title=dict(
+            text=title,
+            x=0.5
+        )
+    )
     return fig
 
 
@@ -175,6 +193,10 @@ def plotly_line(dataset: pd.DataFrame, x_selection: str, y_selection: str, date_
         yaxis2=dict(
             showgrid=False,
             title=y_selection
+        ),
+        title=dict(
+            text='Metrics Trends',
+            x = 0.5
         ),
         legend=dict(
             orientation="h",

@@ -23,20 +23,20 @@ def read_markdown_file(file: str) -> str:
 
 
 @st.cache(suppress_st_warning=True)
-def create_metrics_dataset(fitness_scores: pd.DataFrame,
+def create_metrics_dataset(sleep_scores: pd.DataFrame,
                            metabolic_scores: pd.DataFrame,
                            fasting_scores: pd.DataFrame) -> pd.DataFrame:
     """
     Inner join the fitness, metabolic, and fasting scores on date and create a date column.
     Args:
-        fitness_scores: Daily fitness scores from Whoop.
+        sleep_scores: Daily sleep scores from Whoop.
         metabolic_scores: Daily metabolic scores from Levels.
         fasting_scores: Daily fasting scores from Zero Fasting.
 
     Returns: A pandas DataFrame of the joined metrics.
 
     """
-    metrics = pd.concat([fitness_scores, metabolic_scores, fasting_scores], axis=1, sort=True, join='inner')\
+    metrics = pd.concat([metabolic_scores, sleep_scores, fasting_scores], axis=1, sort=True, join='inner')\
         .round(2).reset_index()
     metrics.rename(columns={'index': 'Date'}, inplace=True)
     return metrics
@@ -123,7 +123,7 @@ def create_dates(dates: [str]) -> [dt.date]:
     return dates_list
 
 
-@st.cache(suppress_st_warning=True)
+@st.cache()
 def profile_report(summary_data: pd.DataFrame) -> ProfileReport:
     """
     Create a pandas_profiling profile report to embed in the Streamlit app or Jupyter Notebook
@@ -137,13 +137,22 @@ def profile_report(summary_data: pd.DataFrame) -> ProfileReport:
     return pr
 
 
-def variables_for_plot(dataset: pd.DataFrame, app_section: str = 'user') -> (str, str, str):
+def variables_for_plot(dataset: pd.DataFrame,
+                       date_col: str = 'Date',
+                       default_x: str = None,
+                       default_y: str = None,
+                       default_c: str = None,
+                       app_section: str = 'user') -> (str, str, str):
     """
     Get user selected parameters for plot x-axis, y-axis, and optionally, the marker color gradient.
     Args:
         app_section: section of app where function is called from. String used to set streamlit widget keys.
         dataset: pandas dataFrame used for plotting. Expect a 'Date' column and a unique statistics for all other
         columns.
+        default_x: default parameter desired for x axis of scatter plot.
+        default_y: default parameter desired for y axis of scatter plot.
+        default_c: default parameter desired for color scheme of scatter plot.
+        date_col: Name of date column to be removed from selection options.
 
     Returns: parameter selections for the x-axis, y-axis, and the marker color gradient as strings.
 
@@ -152,17 +161,23 @@ def variables_for_plot(dataset: pd.DataFrame, app_section: str = 'user') -> (str
     all_cols = sorted(dataset)
     all_cols.insert(0, '<select>')
     all_cols_no_date = all_cols.copy()
-    all_cols_no_date.remove('Date')
-    x_default = all_cols.index('Sleep Score')
-    y_default = all_cols.index('Sleep Score')
-    c_default = all_cols_no_date.index('Sleep Score')
+    all_cols_no_date.remove(date_col)
+
+    x_default, y_default, c_default = 0, 0, 0
+
+    if default_x:
+        x_default = all_cols_no_date.index(default_x)
+    if default_y:
+        y_default = all_cols_no_date.index(default_y)
+    if default_c:
+        c_default = all_cols_no_date.index(default_c)
 
     x_key = app_section + '_x'
     y_key = app_section + '_y'
     c_key = app_section + '_c'
     x_axis_col, y_axis_col, color_col = st.beta_columns(3)
-    x = x_axis_col.selectbox(label='X-Axis', options=all_cols, index=x_default, key=x_key)
-    y = y_axis_col.selectbox(label='Y-Axis', options=all_cols, index=y_default, key=y_key)
+    x = x_axis_col.selectbox(label='X-Axis', options=all_cols_no_date, index=x_default, key=x_key)
+    y = y_axis_col.selectbox(label='Y-Axis', options=all_cols_no_date, index=y_default, key=y_key)
     color = color_col.selectbox(label='OPTIONAL: Color Gradient',
                                 options=all_cols_no_date,
                                 index=c_default,

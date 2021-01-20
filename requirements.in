@@ -9,4 +9,4 @@ streamlit==0.71.*
 Pillow==8.0.*
 statsmodels==0.12.*
 plotly==4.12.*
-pandas-profiling==2.9.*
+streamlit-pandas-profiling>=0.0.6

@@ -62,7 +62,7 @@ notebook==6.1.5           # via widgetsnbextension
 numba==0.52.0             # via phik
 numpy==1.19.4             # via -r requirements.in, altair, imagehash, matplotlib, missingno, numba, pandas, pandas-profiling, patsy, phik, pyarrow, pydeck, pywavelets, scipy, seaborn, statsmodels, streamlit, visions
 packaging==20.4           # via bleach, pytest, streamlit
-pandas-profiling==2.9.0   # via -r requirements.in
+pandas-profiling==2.9.0   # via streamlit-pandas-profiling
 pandas==1.1.4             # via -r requirements.in, altair, pandas-profiling, phik, seaborn, statsmodels, streamlit, visions
 pandocfilters==1.4.3      # via nbconvert
 parso==0.7.1              # via jedi
@@ -103,7 +103,8 @@ send2trash==1.5.0         # via notebook
 six==1.15.0               # via argon2-cffi, bleach, cycler, imagehash, jsonschema, packaging, patsy, plotly, protobuf, python-dateutil, retrying, validators
 smmap==3.0.4              # via gitdb
 statsmodels==0.12.1       # via -r requirements.in
-streamlit==0.71.0         # via -r requirements.in
+streamlit-pandas-profiling==0.1.1  # via -r requirements.in
+streamlit==0.71.0         # via -r requirements.in, streamlit-pandas-profiling
 tangled-up-in-unicode==0.0.6  # via pandas-profiling, visions
 terminado==0.9.1          # via notebook
 testpath==0.4.4           # via nbconvert

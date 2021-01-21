@@ -81,7 +81,10 @@ def plotly_heatmap(corr_matrix: pd.DataFrame) -> go.Figure:
     data = [go.Heatmap(x=corr_matrix.columns,
                        y=corr_matrix.index,
                        z=corr_matrix,
-                       colorbar=dict(title='Correlation')
+                       colorscale='Blues',
+                       colorbar=dict(title='Correlation'),
+                       zmin=-1,
+                       zmax=1,
                        )]
     layout = go.Layout(autosize=False,
                        xaxis=dict(showticklabels=True, tickfont=dict(size=8)),
@@ -130,7 +133,7 @@ def plotly_scatter(dataset: pd.DataFrame,
                      y=y_selection,
                      color=color,
                      trendline="ols",
-                     hover_data = hover)
+                     hover_data=hover)
     fig.update_layout(
         title=dict(
             text=title,
@@ -196,7 +199,7 @@ def plotly_line(dataset: pd.DataFrame, x_selection: str, y_selection: str, date_
         ),
         title=dict(
             text='Metrics Trends',
-            x = 0.5
+            x=0.5
         ),
         legend=dict(
             orientation="h",

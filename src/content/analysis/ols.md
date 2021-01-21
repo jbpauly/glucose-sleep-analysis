@@ -8,6 +8,8 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Ordinary_least_squares):
 
 ![Least Squares](https://upload.wikimedia.org/wikipedia/en/e/ed/Least_Squares.gif)
 
+**A coefficient of determination (r<sup>2</sup>) factor can be used to 
+describe the "goodness of fit" of the OLS regression models.**
+
 Additional [information on regression](https://online.stat.psu.edu/stat501/lesson/1/1.1) 
 from PennState Eberly College of Science.
-

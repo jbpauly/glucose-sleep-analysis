@@ -146,14 +146,17 @@ if example_analysis_sb:
     st.write("")
     st.markdown("## Analysis")
     st.write("")
-    analysis_file = util.read_markdown_file("analysis.md")
+    analysis_file = util.read_markdown_file("analysis/analysis.md")
     st.markdown(analysis_file, unsafe_allow_html=True)
     with st.beta_expander("View Information on Pearson's Correlation Coefficient"):
-        sample_pc = util.read_markdown_file("pearson_corr.md")
+        sample_pc = util.read_markdown_file("analysis/pearson_corr.md")
         st.markdown(sample_pc, unsafe_allow_html=True)
     with st.beta_expander("View Information on Ordinary Least Squares (OLS) Regression"):
-        sample_ols = util.read_markdown_file("ols.md")
+        sample_ols = util.read_markdown_file("analysis/ols.md")
         st.markdown(sample_ols, unsafe_allow_html=True)
+    with st.beta_expander("View Information on Coefficient of Determination"):
+        sample_rsquared = util.read_markdown_file("analysis/rsquared.md")
+        st.markdown(sample_rsquared, unsafe_allow_html=True)
 
     st.write("")
     st.markdown("### Sample Dataset Analysis")
@@ -164,8 +167,6 @@ if example_analysis_sb:
     sample_corr = util.corr_matrix(sample_dataset, 'Date').round(2)
     sample_heatmap = plot.plotly_heatmap(sample_corr)
     st.plotly_chart(sample_heatmap, use_container_width=True)
-
-
 
     x_selection_sample, y_selection_sample, color_selection_sample = util.variables_for_plot(sample_dataset,
                                                                                              date_col='Date',
@@ -225,25 +226,35 @@ if analyze_data_sb:
             fasting = zo.load_zero_data(zero_file)
             fasting_scores = zo.all_fasts_stats(fasting)
 
+    with st.beta_expander("Statistics Terminology Review", expanded=False):
+        st.write("")
+        st.markdown("""
+        If needed, review any of the statistical terms highlighted in the **Analysis** section.
+        """)
+        st.write("")
+        pc_column, ols_column, rr_column = st.beta_columns(3)
+        view_pc = pc_column.checkbox("Pearson's Correlation")
+        view_ols = ols_column.checkbox("OLS Regression")
+        view_rr = rr_column.checkbox("Coefficient of Determination")
+
+        if view_pc:
+            pc_file = util.read_markdown_file("analysis/pearson_corr.md")
+            st.markdown(pc_file, unsafe_allow_html=True)
+        if view_ols:
+            ols_file = util.read_markdown_file("analysis/ols.md")
+            st.markdown(ols_file, unsafe_allow_html=True)
+        if view_rr:
+            rr_file = util.read_markdown_file("analysis/rsquared.md")
+            st.markdown(rr_file, unsafe_allow_html=True)
     with st.beta_expander("Analyze Data", expanded=False):
         st.write("")
         if sleep_scores is not None and metabolic_scores is not None and fasting_scores is not None:
-            dd_column, pc_column, ols_column = st.beta_columns(3)
-
-            view_dd = dd_column.checkbox("Data Dictionary")
-            view_pc = pc_column.checkbox("Pearson's Correlation Coefficient")
-            view_ols = ols_column.checkbox("Ordinary Least Squares Regression")
+            view_dd = st.checkbox("View Data Dictionary")
             if view_dd:
+                st.markdown("#### Data Dictionary: Lifestyle and Metabolic Metrics")
+                st.write("")
                 st.table(data_dictionary)
-            if view_pc:
-                pc_file = util.read_markdown_file("pearson_corr.md")
-                st.markdown(pc_file, unsafe_allow_html=True)
-            if view_ols:
-                ols_file = util.read_markdown_file("ols.md")
-
-                st.markdown(ols_file, unsafe_allow_html=True)
-
-            st.write("")
+                st.write("")
 
             all_metrics = util.create_metrics_dataset(sleep_scores=sleep_scores,
                                                       metabolic_scores=metabolic_scores,

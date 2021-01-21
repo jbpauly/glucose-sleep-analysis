@@ -131,9 +131,15 @@ def plotly_scatter(dataset: pd.DataFrame,
     fig = px.scatter(dataset,
                      x=x_selection,
                      y=y_selection,
+                     color_continuous_scale='Blues',
                      color=color,
                      trendline="ols",
                      hover_data=hover)
+    fig.update_traces(
+        marker=dict(
+            line=dict(width=1,
+                      color='DarkSlateGrey')),
+        )
     fig.update_layout(
         title=dict(
             text=title,
@@ -157,10 +163,16 @@ def plotly_line(dataset: pd.DataFrame, x_selection: str, y_selection: str, date_
     """
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     fig.add_trace(
-        go.Scatter(x=dataset.loc[:, date_col], y=dataset.loc[:, x_selection], mode='lines+markers', name=x_selection),
+        go.Scatter(x=dataset.loc[:, date_col],
+                   y=dataset.loc[:, x_selection],
+                   mode='lines+markers',
+                   name=x_selection),
         secondary_y=False, )
     fig.add_trace(
-        go.Scatter(x=dataset.loc[:, date_col], y=dataset.loc[:, y_selection], mode='lines+markers', name=y_selection),
+        go.Scatter(x=dataset.loc[:, date_col],
+                   y=dataset.loc[:, y_selection],
+                   mode='lines+markers',
+                   name=y_selection),
         secondary_y=True, )
     fig.update_layout(
         xaxis=dict(

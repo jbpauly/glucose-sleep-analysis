@@ -25,6 +25,8 @@ An application to cross analyze your metabolic health and lifestyle metrics.
 """)
 welcome_sb = st.sidebar.checkbox(
     "Welcome", value=True)
+lifestyle_sb = st.sidebar.checkbox(
+    "Metabolism & Lifestyle", value=False)
 data_sb = st.sidebar.checkbox(
     "Data", value=False)
 example_analysis_sb = st.sidebar.checkbox(
@@ -53,6 +55,56 @@ if welcome_sb:
         welcome_file = util.read_markdown_file("welcome.md")
         st.markdown(welcome_file, unsafe_allow_html=True)
 
+if lifestyle_sb:
+    st.write("")
+    st.markdown("## Metabolism & Lifestyle")
+    st.write("")
+    research_intro_file = util.read_markdown_file("research/research_intro.md")
+    st.markdown(research_intro_file, unsafe_allow_html=True)
+
+    st.markdown("### Sleep")
+    st.write("")
+    with st.beta_expander("Sleep Overview", expanded=True):
+        sleep_intro_file = util.read_markdown_file("research/sleep.md")
+        st.markdown(sleep_intro_file, unsafe_allow_html=True)
+        ideal_sleep = Image.open(util.SRC_PATH / 'content/research/sleep_diabetes.jpg')
+        st.image(ideal_sleep, use_column_width=True, )
+    with st.beta_expander("Additional Sleep & Metabolism Studies", expanded=False):
+        sleep_summaries_file = util.read_markdown_file("research/sleep_summaries.md")
+        st.markdown(sleep_summaries_file, unsafe_allow_html=True)
+
+    st.write("")
+    st.markdown("### Fasting")
+    st.write("")
+    with st.beta_expander("Fasting Overview", expanded=True):
+        fasting_intro_file = util.read_markdown_file("research/fasting.md")
+        st.markdown(fasting_intro_file, unsafe_allow_html=True)
+        fast_phase_1 = Image.open(util.SRC_PATH / 'content/research/fasting_01.jpg')
+        st.image(fast_phase_1, use_column_width=True, )
+        fast_phase_2 = Image.open(util.SRC_PATH / 'content/research/fasting_02.jpg')
+        st.image(fast_phase_2, use_column_width=True, )
+        fast_phase_3 = Image.open(util.SRC_PATH / 'content/research/fasting_03.jpg')
+        st.image(fast_phase_3, use_column_width=True, )
+        fast_phase_4 = Image.open(util.SRC_PATH / 'content/research/fasting_04.jpg')
+        st.image(fast_phase_4, use_column_width=True, )
+        fast_phase_5 = Image.open(util.SRC_PATH / 'content/research/fasting_05.jpg')
+        st.image(fast_phase_5, use_column_width=True, )
+    with st.beta_expander("Additional Fasting & Metabolism Studies", expanded=False):
+        fasting_summaries_file = util.read_markdown_file("research/fasting_summaries.md")
+        st.markdown(fasting_summaries_file, unsafe_allow_html=True)
+
+    st.write("")
+    st.markdown("### Exercise")
+    st.write("")
+    with st.beta_expander("Exercise Overview", expanded=True):
+        exercise_intro_file = util.read_markdown_file("research/exercise.md")
+        st.markdown(exercise_intro_file, unsafe_allow_html=True)
+        glucose_walk = Image.open(util.SRC_PATH / 'content/research/glucose_walk.jpg')
+        st.image(glucose_walk, use_column_width=True, )
+    with st.beta_expander("Additional Exercise & Metabolism Studies", expanded=False):
+        exercise_summaries_file = util.read_markdown_file("research/exercise_summaries.md")
+        st.markdown(exercise_summaries_file, unsafe_allow_html=True)
+
 if data_sb:
     st.write("")
     st.markdown("## Data")
@@ -63,10 +115,10 @@ if data_sb:
     st.markdown("""
     Below is additional information on the logs and metrics: data sources, insights into the calculations, etc.
     """)
-    with st.beta_expander("Metabolic Score", expanded=False):
+    with st.beta_expander("Metabolic Score", expanded=True):
         ms_file = util.read_markdown_file("data/metabolic_score.md")
         st.markdown(ms_file, unsafe_allow_html=True)
-    with st.beta_expander("Fast (cumulative and consecutive hours)", expanded=False):
+    with st.beta_expander("Fast (cumulative and consecutive hours)", expanded=True):
         fast_cc_file = util.read_markdown_file("data/fast_cc.md")
         st.markdown(fast_cc_file, unsafe_allow_html=True)
         fast_example = Image.open(util.SRC_PATH / 'content/data/fast_breakdown.jpg')

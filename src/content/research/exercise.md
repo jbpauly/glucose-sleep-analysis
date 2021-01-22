@@ -6,7 +6,7 @@ A [top recommendation from Levels](https://www.levelshealth.com/blog/12-glucose-
 is to be active throughout the day: 
 > Exercise of any type helps with glucose control and metabolic fitness. Short, frequent bursts of exercise seem to be more effective than longer isolated chunks of exercise. Try to be active all throughout the day!
 
-Physical activity can also be used as a realtime hack to blunt post meal spikes. 
+Physical activity can also be used as a realtime hack to blunt post meal glucose spikes. 
 Something as simple as a post meal walk can be effective. 
 
 Below is my own anecdotal experience, shared by Levels, 

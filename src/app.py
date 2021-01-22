@@ -10,6 +10,7 @@ import whoop as wp
 import zero as zo
 
 sample_file_path = util.SRC_PATH / 'sample.csv'
+analysis_gif_path = util.SRC_PATH / 'content/analysis.gif'
 data_dictionary_path = util.SRC_PATH / 'content' / 'metrics_data_dictionary.csv'
 data_dictionary = pd.read_csv(data_dictionary_path, index_col='Label')
 sample = pd.read_csv(sample_file_path, parse_dates=['Date'], index_col=0).round(2)
@@ -54,6 +55,10 @@ if welcome_sb:
     with st.beta_expander("Welcome!", expanded=True):
         welcome_file = util.read_markdown_file("welcome.md")
         st.markdown(welcome_file, unsafe_allow_html=True)
+        st.image('content/analysis.gif', use_column_width=True, )
+        st.write("")
+        limitations_file = util.read_markdown_file("limitations.md")
+        st.markdown(limitations_file, unsafe_allow_html=True)
 
 if lifestyle_sb:
     st.write("")

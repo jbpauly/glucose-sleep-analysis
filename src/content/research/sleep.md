@@ -9,6 +9,6 @@ You can read the full post [here](https://www.levelshealth.com/blog/how-sleep-im
 > glucose out of their bloodstream 40% slower than when they were well-rested 
 > - Poor sleep can increase your risk of developing type 2 diabetes
 
-Interestingly, this is increased risk in type 2 diabetes in both over and under sleeping. 
+Interestingly, there's increased risk in type 2 diabetes from both **over and under sleeping**. 
 The ideal duration of sleep on average is somewhere between 7 and 8 hours. 
 The ADA [summarized these results over 9 studies](https://care.diabetesjournals.org/content/38/3/529).

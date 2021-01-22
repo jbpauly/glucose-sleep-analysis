@@ -55,7 +55,7 @@ if welcome_sb:
     with st.beta_expander("Welcome!", expanded=True):
         welcome_file = util.read_markdown_file("welcome.md")
         st.markdown(welcome_file, unsafe_allow_html=True)
-        st.image('content/analysis.gif', use_column_width=True, )
+        st.image('https://raw.githubusercontent.com/jbpauly/glucose-sleep-analysis/main/src/content/analysis.gif', use_column_width=True, )
         st.write("")
         limitations_file = util.read_markdown_file("limitations.md")
         st.markdown(limitations_file, unsafe_allow_html=True)

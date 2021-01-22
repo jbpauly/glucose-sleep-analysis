@@ -1,18 +1,26 @@
-# Metabolic Health and Sleep Cross Analysis
+# Metabolic Health and Lifestyle Metrics Cross Analysis
 
-Sleep, or lack of, can highly impact your metabolic health.
-If you track your sleep with Whoop and glucose with Levels, 
-this [app](https://share.streamlit.io/jbpauly/glucose-sleep-analysis/main/src/app.py)
-enables you to cross analyze your sleep metrics glucose data.
+As you actively work on your metabolic fitness, 
+it's important to understand the impact of environmental variables, not just nutrition.
+
+[This application](https://share.streamlit.io/jbpauly/glucose-sleep-analysis/main/src/app.py)
+allows you to upload your Levels, Zero Fasting, and Whoop data and analyze the results for yourself.
 
 ![](src/content/analysis.gif)
 
 ## Try it out!
-1. [Launch the app](https://share.streamlit.io/jbpauly/glucose-sleep-analysis/main/src/app.py)
-2. Download your [Freestyle Libre glucose data](https://www.libreview.com/)
+1. Log your Levels Metabolic Scores and Save as a CSV ([view template](https://docs.google.com/spreadsheets/d/1uqkZBKDaJqoXVy18jEXOv94Dx00D-X_etJEz_IFvV6M/edit?usp=sharing))
+    - Two Columns: Date, Metabolic Score
+    - Descending by date (oldest to newest)
+    - Save as a CSV file
+2. Export Zero Fasting Log and re-save as a CSV
+    - In app instructions 
+        - Me (lower right) -> Settings (upper right) -> My Data -> Export Data
+    - Check if file exports as a TXT or CSV file and re-save as a CSV if necessary
 3. Download your [Whoop sleep summary data](https://docs.google.com/spreadsheets/d/1q9tU4tkBLUi6oFsdLsO9HnOuMC-TEkrBXNoNXvLQt3Q/edit#gid=1913656685)
     - Follow the [How To video](https://www.youtube.com/watch?v=x19G39cXkoM)
     - Download **only** the 'Whoop' sheet as a CSV
+4. Upload your data
 
 #### Learn more about the [Whoop api](https://github.com/pelo-tech/whoop-api-spec)
 Thank you [Pelo-Tech](https://github.com/pelo-tech) and [DovOps](https://github.com/DovOps)
@@ -30,14 +38,14 @@ streamlit run main.py
 ```
 
 ## Roadmap
-1. Close out code coverage with tests.
-2. Add data dictionary and clean up parameter names.
-3. Calculate previous day strain metrics.
-4. Investigate how the FreeStyle Libre device historizes data (on change vs interval) and adjust aggregations if needed.
-5. Add best-fit-line & clustering features
-6. Integrate with [whoop-api-spec](https://github.com/pelo-tech/whoop-api-spec) 
+1. Close out code coverage with tests
+2. Enhance Zero module to work with 24+ hour long fasts
+3. Add 'data pruning' functionality
+3. Add confidence intervals to regression lines
+4. Create a 'binning' function and functionality to bin any continuous variable 
+5. Integrate with [whoop-api-spec](https://github.com/pelo-tech/whoop-api-spec) 
 so users can request Whoop sleep data directly from app instead using the [google-sheet GUI](https://docs.google.com/spreadsheets/d/1q9tU4tkBLUi6oFsdLsO9HnOuMC-TEkrBXNoNXvLQt3Q/edit#gid=1913656685)
-7. Add option to download analysis dataset.
+6. Add functionality with other datasets / sources (if requested).
 
 ## Questions, comments, or suggestions?
 This app new and will likely break at some point. 

@@ -1,0 +1,11 @@
+Label,Description,Source,Data Type
+Metabolic Score,Rating of daily glucose patterns as a percentage out of 100. Levels calculates the score with a proprietary algorithm which accounts for attributes like glucose median and variability.  ,Levels Health,Continuous [0-100]
+Strain,Summary metric of the cardiovascular load achieved over a single day. Whoop calculates the metric with a proprietary algorithm.,Whoop,Continuous [0-21]
+Recovery,"Summary metric to reflect one's preparedness to take on Strain as a percentage out of 100. Whoop calculates the metric with a proprietary algorithm which accounts for Heart Rate Variability, Resting Heart Rate, Respiratory Rate, and Hours of Sleep.",Whoop,Continuous [0-100]
+Sleep Score,Performance of Hours of Sleep compared to the amount of Sleep Needed as a percentage out of 100. Hours of Sleep and Sleep Needed are calculated by proprietary Whoop algorithms.,Whoop,Continuous [0-100]
+Sleep (hours),Hours of sleep in a single night of sleep as calculated by a proprietary Whoop algorithm.,Whoop,Continuous [0-24]
+Fast (cumulative hours),Cumulative hours of fasting logged in Zero Fasting for a single day. It's possible to participate in two separate fasts in a single day.,"Zero Fasting (log), Custom (calculation)",Continuous [0-24]
+Fast (consecutive hours),"Maximum consecutive hours fasted in a single day, including continuous hours carried over from previous day(s). It's possible to participate in two separate fasts in a single day.","Zero Fasting (log), Custom (calculation)",Continuous [0-24]
+Fast Binned (consecutive hours),"Categorical groupings of the Fast (consecutive hours) calculations. Groups: [0-12], (12-15], (15-18], (18-24].","Zero Fasting (log), Custom (calculation)","Catagorical [0-12, 13-15, 16-18, 18+]"
+Fast Binned (cumulative hours),"Categorical groupings of the Fast (cumulative hours) calculations. Groups: [0-12], (12-15], (15-18], (18-24].","Zero Fasting (log), Custom (calculation)","Catagorical [0-12, 13-15, 16-18, 18+]"
+Fast,Binary assignment of fasting for more than 12 hours in a single day (cumulative hours).,"Zero Fasting (log), Custom (calculation)","Binary [Yes, No]"

@@ -13,7 +13,9 @@ sample_file_path = util.SRC_PATH / 'sample.csv'
 analysis_gif_path = util.SRC_PATH / 'content/analysis.gif'
 data_dictionary_path = util.SRC_PATH / 'content' / 'metrics_data_dictionary.csv'
 data_dictionary = pd.read_csv(data_dictionary_path, index_col='Label')
+
 sample = pd.read_csv(sample_file_path, parse_dates=['Date'], index_col=0).round(2)
+sample['Date'] = sample.Date.dt.date
 
 st.set_page_config(page_title='Metabolic Health',
                    page_icon='🔎',
@@ -169,7 +171,7 @@ if example_analysis_sb:
     with st.beta_expander("View Data Dictionary"):
         st.table(data_dictionary)
     sample_dataset = sample
-    sample_corr = util.corr_matrix(sample_dataset, 'Date').round(2)
+    sample_corr = util.corr_matrix(sample_dataset, date_column= 'Date').round(2)
     sample_heatmap = plot.plotly_heatmap(sample_corr)
     st.plotly_chart(sample_heatmap, use_container_width=True)
 
@@ -180,8 +182,11 @@ if example_analysis_sb:
                                                                                              default_c='Fast',
                                                                                              app_section='sample')
     if x_selection_sample != '<select>' and y_selection_sample != '<select>':
-        sample_scatter = plot.plotly_scatter(sample_dataset, x_selection_sample, y_selection_sample,
-                                          color_selection_sample)
+        sample_scatter = plot.plotly_scatter(dataset= sample_dataset,
+                                             x_selection= x_selection_sample,
+                                             y_selection= y_selection_sample,
+                                             color_selection= color_selection_sample,
+                                             hover = ['Date'])
         sample_line = plot.plotly_line(sample_dataset, x_selection_sample, y_selection_sample, 'Date')
         st.plotly_chart(sample_scatter, use_container_width=True)
         st.plotly_chart(sample_line, use_container_width=True)
@@ -275,7 +280,11 @@ if analyze_data_sb:
                                                                                 default_c='Fast',
                                                                                 app_section='user')
             if x_selection != '<select>' and y_selection != '<select>':
-                scatter = plot.plotly_scatter(all_metrics, x_selection, y_selection, color_selection)
+                scatter = plot.plotly_scatter(dataset = all_metrics,
+                                              x_selection= x_selection,
+                                              y_selection= y_selection,
+                                              color_selection= color_selection,
+                                              hover = ['Date'])
                 line = plot.plotly_line(all_metrics, x_selection, y_selection, 'Date')
                 st.write("")
                 st.plotly_chart(scatter, use_container_width=True)

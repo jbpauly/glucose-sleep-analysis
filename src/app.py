@@ -57,7 +57,8 @@ if welcome_sb:
     with st.beta_expander("Welcome!", expanded=True):
         welcome_file = util.read_markdown_file("welcome.md")
         st.markdown(welcome_file, unsafe_allow_html=True)
-        st.image('https://raw.githubusercontent.com/jbpauly/glucose-sleep-analysis/main/src/content/analysis.gif', use_column_width=True, )
+        st.image('https://raw.githubusercontent.com/jbpauly/glucose-sleep-analysis/main/src/content/analysis.gif',
+                 use_column_width=True, )
         st.write("")
         limitations_file = util.read_markdown_file("limitations.md")
         st.markdown(limitations_file, unsafe_allow_html=True)
@@ -171,7 +172,7 @@ if example_analysis_sb:
     with st.beta_expander("View Data Dictionary"):
         st.table(data_dictionary)
     sample_dataset = sample
-    sample_corr = util.corr_matrix(sample_dataset, date_column= 'Date').round(2)
+    sample_corr = util.corr_matrix(sample_dataset, date_column='Date').round(2)
     sample_heatmap = plot.plotly_heatmap(sample_corr)
     st.plotly_chart(sample_heatmap, use_container_width=True)
 
@@ -182,11 +183,11 @@ if example_analysis_sb:
                                                                                              default_c='Fast',
                                                                                              app_section='sample')
     if x_selection_sample != '<select>' and y_selection_sample != '<select>':
-        sample_scatter = plot.plotly_scatter(dataset= sample_dataset,
-                                             x_selection= x_selection_sample,
-                                             y_selection= y_selection_sample,
-                                             color_selection= color_selection_sample,
-                                             hover = ['Date'])
+        sample_scatter = plot.plotly_scatter(dataset=sample_dataset,
+                                             x_selection=x_selection_sample,
+                                             y_selection=y_selection_sample,
+                                             color_selection=color_selection_sample,
+                                             hover=['Date'])
         sample_line = plot.plotly_line(sample_dataset, x_selection_sample, y_selection_sample, 'Date')
         st.plotly_chart(sample_scatter, use_container_width=True)
         st.plotly_chart(sample_line, use_container_width=True)
@@ -280,11 +281,11 @@ if analyze_data_sb:
                                                                                 default_c='Fast',
                                                                                 app_section='user')
             if x_selection != '<select>' and y_selection != '<select>':
-                scatter = plot.plotly_scatter(dataset = all_metrics,
-                                              x_selection= x_selection,
-                                              y_selection= y_selection,
-                                              color_selection= color_selection,
-                                              hover = ['Date'])
+                scatter = plot.plotly_scatter(dataset=all_metrics,
+                                              x_selection=x_selection,
+                                              y_selection=y_selection,
+                                              color_selection=color_selection,
+                                              hover=['Date'])
                 line = plot.plotly_line(all_metrics, x_selection, y_selection, 'Date')
                 st.write("")
                 st.plotly_chart(scatter, use_container_width=True)
@@ -294,6 +295,10 @@ if analyze_data_sb:
             # if get_report:
             #     pr = util.profile_report(all_metrics)
             #     st_profile_report(pr)
+        else:
+            st.markdown("""
+            Please Upload All Required Data in the **Upload Data** Section Above
+            """)
 
 if more_info_sb:
     st.write("")

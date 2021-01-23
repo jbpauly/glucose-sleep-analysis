@@ -11,8 +11,8 @@ from burning glucose to burning fatty acids and ketones. More from the same post
 Josh Clemente, a Levels co-founder, has shared the benefits of IF on his metabolic fitness on the Levels 
 [blog](https://www.levelshealth.com/blog/12-glucose-lowering-strategies-to-improve-metabolic-fitness#w-node-cb8068197b2d-1eb46bd3:~:text=Explore%20intermittent%20fasting)
 .
->  His average glucose gently trend down into the optimal range and remain there with only 2-3% variation for days at a
-> time
+>  During periods of extended fasts, Josh's average glucose gently trends down into the optimal range and remains there
+> with only 2-3% variation for days at a time.
 
 Below is the [Physiology of Fasting](https://www.zerofasting.com/the-physiology-of-fasting/)
  depicted and explained by the Zero team.

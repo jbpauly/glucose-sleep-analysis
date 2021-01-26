@@ -10,7 +10,9 @@ and they're [just getting started](https://www.levelshealth.com/blog/the-secret-
 is backed by [science](https://www.zerofasting.com/why-fasting) 
 and led by top [experts](https://www.bigskyhealth.com/our-team) in longevity and wellness.
 
-Together, these two tools enable me to strengthen my metabolic fitness.
+[Whoop](https://www.whoop.com/) monitors heart rate and provides personalized fitness, sleep, and recovery analytics.
+
+Together, as my current health-tech stack, these tools and technology enable me to strengthen my metabolic fitness.
 
 As a problem solver, 
 my experience is in time series analysis, 

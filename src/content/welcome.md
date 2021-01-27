@@ -6,3 +6,6 @@ As you actively work on your metabolic fitness,
 it's important to understand the impact of environmental variables, not just nutrition.
 
 This application allows you to upload your Levels, Zero Fasting, and Whoop data and analyze the results for yourself.
+
+If interested, you can check out an explanation of my personal findings 
+[here](https://twitter.com/j_b_pauly/status/1352729344960032770?s=20).
